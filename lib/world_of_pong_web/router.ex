@@ -17,6 +17,8 @@ defmodule WorldOfPongWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/ping", PingController, :index
+    get "/ping/:reply", PingController, :show
   end
 
   # Other scopes may use custom stacks.
