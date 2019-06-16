@@ -32,4 +32,19 @@ defmodule WorldOfPong.Core.Player do
     new_readings = [reading | old_readings]
     %__MODULE__{player | readings: new_readings}
   end
+
+  @doc """
+  Clears all readings from a player
+
+  ## Example
+
+    iex> charlie = %WorldOfPong.Core.Player{name: "Charlie", readings: [15]};
+    iex> WorldOfPong.Core.Player.clear_readings(charlie);
+    %WorldOfPong.Core.Player{name: "Charlie", readings: []}
+
+  """
+  @spec clear_readings(%__MODULE__{}) :: %__MODULE__{}
+  def clear_readings(player) do
+    %__MODULE__{player | readings: []}
+  end
 end
