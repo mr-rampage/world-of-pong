@@ -1,0 +1,35 @@
+defmodule WorldOfPong.Core.Player do
+  @moduledoc """
+  Player actor
+  """
+
+  @type t :: %__MODULE__{name: String.t, readings: list(pos_integer)}
+  defstruct name: "", readings: []
+
+  @doc """
+  Creates a player with a given name
+
+  ## Example
+
+    iex> WorldOfPong.Core.Player.new("Fred")
+    %WorldOfPong.Core.Player{name: "Fred", readings: []}
+
+  """
+  @spec new(String.t) :: %__MODULE__{}
+  def new(name), do: %__MODULE__{name: name}
+
+  @doc """
+  Prepends a reading to a player
+
+  ## Example
+
+    iex> WorldOfPong.Core.Player.add_reading(WorldOfPong.Core.Player.new("Fred"), 5)
+    %WorldOfPong.Core.Player{name: "Fred", readings: [5]}
+
+  """
+  @spec add_reading(%__MODULE__{}, pos_integer) :: %__MODULE__{}
+  def add_reading(%__MODULE__{readings: old_readings} = player, reading) do
+    new_readings = [reading | old_readings]
+    %__MODULE__{player | readings: new_readings}
+  end
+end
