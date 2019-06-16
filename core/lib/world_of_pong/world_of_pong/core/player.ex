@@ -47,4 +47,26 @@ defmodule WorldOfPong.Core.Player do
   def clear_readings(player) do
     %__MODULE__{player | readings: []}
   end
+
+  @doc """
+  Calculates the average position of a player
+
+  ## Example
+
+    iex> charlie = %WorldOfPong.Core.Player{name: "Charlie", readings: [15, 10, 11, 13, 15]};
+    iex> WorldOfPong.Core.Player.average_reading(charlie);
+    {:ok, 12.8}
+    iex> WorldOfPong.Core.Player.average_reading(WorldOfPong.Core.Player.new("Charlie"))
+    {:error}
+
+  """
+  @spec average_reading(%__MODULE__{}) :: {:error}
+  def average_reading(%__MODULE__{readings: []}) do
+    {:error}
+  end
+
+  @spec average_reading(%__MODULE__{}) :: {:ok, float}
+  def average_reading(%__MODULE__{readings: readings}) do
+    {:ok, Enum.sum(readings) / length(readings)}
+  end
 end
