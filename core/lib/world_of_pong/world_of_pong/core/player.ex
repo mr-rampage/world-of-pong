@@ -3,8 +3,8 @@ defmodule WorldOfPong.Core.Player do
   Player actor
   """
 
-  @type t :: %__MODULE__{name: String.t, readings: list(pos_integer)}
-  defstruct name: "", readings: []
+  @type t :: %__MODULE__{ name: String.t, readings: list( pos_integer ) }
+  defstruct name: "", readings: [ ]
 
   @doc """
   Creates a player with a given name
@@ -15,8 +15,8 @@ defmodule WorldOfPong.Core.Player do
     %WorldOfPong.Core.Player{name: "Fred", readings: []}
 
   """
-  @spec new(String.t) :: %__MODULE__{}
-  def new(name), do: %__MODULE__{name: name}
+  @spec new( String.t ) :: %__MODULE__{ }
+  def new( name ), do: %__MODULE__{ name: name }
 
   @doc """
   Prepends a reading to a player
@@ -27,10 +27,10 @@ defmodule WorldOfPong.Core.Player do
     %WorldOfPong.Core.Player{name: "Fred", readings: [5]}
 
   """
-  @spec add_reading(%__MODULE__{}, pos_integer) :: %__MODULE__{}
-  def add_reading(%__MODULE__{readings: old_readings} = player, reading) do
-    new_readings = [reading | old_readings]
-    %__MODULE__{player | readings: new_readings}
+  @spec add_reading( %__MODULE__{ }, pos_integer ) :: %__MODULE__{ }
+  def add_reading( %__MODULE__{ readings: old_readings } = player, reading ) do
+    new_readings = [ reading | old_readings ]
+    %__MODULE__{ player | readings: new_readings }
   end
 
   @doc """
@@ -43,9 +43,9 @@ defmodule WorldOfPong.Core.Player do
     %WorldOfPong.Core.Player{name: "Charlie", readings: []}
 
   """
-  @spec clear_readings(%__MODULE__{}) :: %__MODULE__{}
-  def clear_readings(player) do
-    %__MODULE__{player | readings: []}
+  @spec clear_readings( %__MODULE__{ } ) :: %__MODULE__{ }
+  def clear_readings( player ) do
+    %__MODULE__{ player | readings: [ ] }
   end
 
   @doc """
@@ -60,13 +60,13 @@ defmodule WorldOfPong.Core.Player do
     {:error}
 
   """
-  @spec average_reading(%__MODULE__{}) :: {:error}
-  def average_reading(%__MODULE__{readings: []}) do
-    {:error}
+  @spec average_reading( %__MODULE__{ } ) :: { :error }
+  def average_reading( %__MODULE__{ readings: [ ] } ) do
+    { :error }
   end
 
-  @spec average_reading(%__MODULE__{}) :: {:ok, float}
-  def average_reading(%__MODULE__{readings: readings}) do
-    {:ok, Enum.sum(readings) / length(readings)}
+  @spec average_reading( %__MODULE__{ } ) :: { :ok, float }
+  def average_reading( %__MODULE__{ readings: readings } ) do
+    { :ok, Enum.sum( readings ) / length( readings ) }
   end
 end
