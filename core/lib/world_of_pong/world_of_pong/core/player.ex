@@ -11,8 +11,8 @@ defmodule WorldOfPong.Core.Player do
 
   ## Example
 
-    iex> WorldOfPong.Core.Player.new("Fred")
-    %WorldOfPong.Core.Player{name: "Fred", readings: []}
+    iex> new("Fred")
+    %Player{name: "Fred", readings: []}
 
   """
   @spec new( String.t ) :: %__MODULE__{ }
@@ -23,8 +23,8 @@ defmodule WorldOfPong.Core.Player do
 
   ## Example
 
-    iex> WorldOfPong.Core.Player.add_reading(WorldOfPong.Core.Player.new("Fred"), 5)
-    %WorldOfPong.Core.Player{name: "Fred", readings: [5]}
+    iex> add_reading(%Player{name: "Fred"}, 5)
+    %Player{name: "Fred", readings: [5]}
 
   """
   @spec add_reading( %__MODULE__{ }, pos_integer ) :: %__MODULE__{ }
@@ -38,9 +38,9 @@ defmodule WorldOfPong.Core.Player do
 
   ## Example
 
-    iex> charlie = %WorldOfPong.Core.Player{name: "Charlie", readings: [15]};
-    iex> WorldOfPong.Core.Player.clear_readings(charlie);
-    %WorldOfPong.Core.Player{name: "Charlie", readings: []}
+    iex> charlie = %Player{name: "Charlie", readings: [15]};
+    iex> clear_readings(charlie);
+    %Player{name: "Charlie", readings: []}
 
   """
   @spec clear_readings( %__MODULE__{ } ) :: %__MODULE__{ }
@@ -53,10 +53,10 @@ defmodule WorldOfPong.Core.Player do
 
   ## Example
 
-    iex> charlie = %WorldOfPong.Core.Player{name: "Charlie", readings: [15, 10, 11, 13, 15]};
-    iex> WorldOfPong.Core.Player.average_reading(charlie);
+    iex> charlie = %Player{name: "Charlie", readings: [15, 10, 11, 13, 15]};
+    iex> average_reading(charlie);
     {:ok, 12.8}
-    iex> WorldOfPong.Core.Player.average_reading(WorldOfPong.Core.Player.new("Charlie"))
+    iex> average_reading(%Player{name: "Charlie", readings: []})
     {:error}
 
   """
