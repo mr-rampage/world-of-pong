@@ -5,9 +5,9 @@ defmodule WorldOfPong.Core.Player do
   Player actor
   """
 
-  @type t :: %Player{ name: String.t, readings: list( pos_integer ) }
+  @type t :: %Player{name: String.t(), readings: list(pos_integer)}
   defstruct name: "Player",
-            readings: [ ]
+            readings: []
 
   @doc """
   Returns a player with a given name
@@ -18,8 +18,8 @@ defmodule WorldOfPong.Core.Player do
     %Player{name: "Fred", readings: []}
 
   """
-  @spec new( String.t ) :: %Player{ }
-  def new( name ), do: %Player{ name: name }
+  @spec new(String.t()) :: %Player{}
+  def new(name), do: %Player{name: name}
 
   @doc """
   Returns a Player with the reading prepended
@@ -32,14 +32,14 @@ defmodule WorldOfPong.Core.Player do
     { :error }
 
   """
-  @spec add_reading( %Player{ }, pos_integer ) :: { :ok, %Player{ } }
-  def add_reading( %Player{ readings: old_readings } = player, reading ) when reading >= 0 do
-    new_readings = [ reading | old_readings ]
-    { :ok, %Player{ player | readings: new_readings } }
+  @spec add_reading(%Player{}, pos_integer) :: {:ok, %Player{}}
+  def add_reading(%Player{readings: old_readings} = player, reading) when reading >= 0 do
+    new_readings = [reading | old_readings]
+    {:ok, %Player{player | readings: new_readings}}
   end
 
-  @spec add_reading( %Player{ }, neg_integer ) :: { :error }
-  def add_reading( _player, _reading ), do: { :error }
+  @spec add_reading(%Player{}, neg_integer) :: {:error}
+  def add_reading(_player, _reading), do: {:error}
 
   @doc """
   Returns a Player with empty readings
@@ -51,8 +51,8 @@ defmodule WorldOfPong.Core.Player do
     { :ok, %Player{name: "Charlie", readings: []} }
 
   """
-  @spec clear_readings( %Player{ } ) :: %Player{ }
-  def clear_readings( %Player{ } = player ), do: { :ok, %Player{ player | readings: [ ] } }
+  @spec clear_readings(%Player{}) :: %Player{}
+  def clear_readings(%Player{} = player), do: {:ok, %Player{player | readings: []}}
 
   @doc """
   Returns a Player's average reading
@@ -66,10 +66,10 @@ defmodule WorldOfPong.Core.Player do
     {:error}
 
   """
-  @spec average_reading( %Player{ } ) :: { :ok, float }
-  def average_reading( %Player{ readings: [ _ | _ ] = readings } ), do: { :ok, Enum.sum( readings ) / length( readings ) }
+  @spec average_reading(%Player{}) :: {:ok, float}
+  def average_reading(%Player{readings: [_ | _] = readings}),
+    do: {:ok, Enum.sum(readings) / length(readings)}
 
-  @spec average_reading( %Player{ } ) :: { :error }
-  def average_reading( _player ), do: { :error }
-
+  @spec average_reading(%Player{}) :: {:error}
+  def average_reading(_player), do: {:error}
 end
