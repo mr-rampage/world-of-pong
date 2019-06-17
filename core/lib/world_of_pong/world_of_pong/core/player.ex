@@ -10,7 +10,7 @@ defmodule WorldOfPong.Core.Player do
             readings: [ ]
 
   @doc """
-  Creates a player with a given name
+  Returns a player with a given name
 
   ## Example
 
@@ -22,7 +22,7 @@ defmodule WorldOfPong.Core.Player do
   def new( name ), do: %Player{ name: name }
 
   @doc """
-  Prepends a reading to a player
+  Returns a Player with the reading prepended
 
   ## Example
 
@@ -42,7 +42,7 @@ defmodule WorldOfPong.Core.Player do
   def add_reading( _player, _reading ), do: { :error }
 
   @doc """
-  Clears all readings from a player
+  Returns a Player with empty readings
 
   ## Example
 
@@ -55,7 +55,7 @@ defmodule WorldOfPong.Core.Player do
   def clear_readings( %Player{ } = player ), do: { :ok, %Player{ player | readings: [ ] } }
 
   @doc """
-  Calculates the average position of a player
+  Returns a Player's average reading
 
   ## Example
 
