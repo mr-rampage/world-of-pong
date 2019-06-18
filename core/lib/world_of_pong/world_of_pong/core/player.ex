@@ -16,10 +16,15 @@ defmodule WorldOfPong.Core.Player do
 
     iex> new("Fred")
     %Player{name: "Fred", readings: []}
+    iex> new("   ")
+    %Player{name: "Player", readings: []}
 
   """
   @spec new(String.t()) :: %Player{}
-  def new(name), do: %Player{name: name}
+  def new(name) do
+    normalized = String.trim(name)
+    if (String.length(normalized) > 0), do: %Player{name: normalized}, else: %Player{}
+  end
 
   @doc """
   Returns a Player with the reading prepended
