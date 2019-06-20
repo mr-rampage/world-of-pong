@@ -6,7 +6,7 @@ defmodule WorldOfPong.Core.PlayerTest do
 
   @moduletag :capture_log
 
-  doctest WorldOfPong.Core.Player, import: true
+  doctest Player, import: true
 
   @tim %Player{name: "Tim", readings: [5]}
 
@@ -20,15 +20,14 @@ defmodule WorldOfPong.Core.PlayerTest do
       )
   )
 
-  property "add a readings",
+  property "add a reading",
     do:
       forall(
-        reading <- integer(),
+        reading <- pos_integer(),
         do:
-          case Player.add_reading(@tim, reading) do
-            {:ok, _player} -> reading >= 0
-            {:error} -> reading < 0
-          end
+          Player.add_reading(@tim, reading).readings
+          |> List.first
+          |> equals(reading)
       )
 
   property "always clear the readings",
@@ -36,9 +35,8 @@ defmodule WorldOfPong.Core.PlayerTest do
       forall(
         readings <- list(pos_integer()),
         do:
-          %Player{@tim | readings: readings}
-          |> Player.clear_readings()
-          |> equals({:ok, %Player{@tim | readings: []}})
+          Player.clear_readings(%Player{@tim | readings: readings}).readings
+          |> equals([])
       )
 
   property "calculate the average reading",

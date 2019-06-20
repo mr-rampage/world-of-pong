@@ -32,19 +32,14 @@ defmodule WorldOfPong.Core.Player do
   ## Example
 
     iex> add_reading(%Player{name: "Fred"}, 5)
-    { :ok, %Player{name: "Fred", readings: [5]} }
-    iex> add_reading(%Player{name: "Fred"}, -1)
-    { :error }
+    %Player{name: "Fred", readings: [5]}
 
   """
   @spec add_reading(%Player{}, pos_integer) :: {:ok, %Player{}}
   def add_reading(%Player{readings: old_readings} = player, reading) when reading >= 0 do
     new_readings = [reading | old_readings]
-    {:ok, %Player{player | readings: new_readings}}
+    %Player{player | readings: new_readings}
   end
-
-  @spec add_reading(%Player{}, neg_integer) :: {:error}
-  def add_reading(_player, _reading), do: {:error}
 
   @doc """
   Returns a Player with empty readings
@@ -53,11 +48,11 @@ defmodule WorldOfPong.Core.Player do
 
     iex> charlie = %Player{name: "Charlie", readings: [15]};
     iex> clear_readings(charlie);
-    { :ok, %Player{name: "Charlie", readings: []} }
+    %Player{name: "Charlie", readings: []}
 
   """
   @spec clear_readings(%Player{}) :: %Player{}
-  def clear_readings(%Player{} = player), do: {:ok, %Player{player | readings: []}}
+  def clear_readings(%Player{} = player), do: %Player{player | readings: []}
 
   @doc """
   Returns a Player's average reading
