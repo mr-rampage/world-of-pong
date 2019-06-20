@@ -23,7 +23,7 @@ defmodule WorldOfPong.Core.Player do
   @spec new(String.t()) :: %Player{}
   def new(name) do
     normalized = String.trim(name)
-    if (String.length(normalized) > 0), do: %Player{name: normalized}, else: %Player{}
+    if String.length(normalized) > 0, do: %Player{name: normalized}, else: %Player{}
   end
 
   @doc """

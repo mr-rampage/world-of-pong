@@ -3,16 +3,22 @@ defmodule WorldOfPong.Core.PlayerTest do
   use PropCheck
 
   alias WorldOfPong.Core.Player
+
+  @moduletag :capture_log
+
   doctest WorldOfPong.Core.Player, import: true
 
   @tim %Player{name: "Tim", readings: [5]}
 
-  property "always name a Player",
+  property("always name a Player", [:verbose],
     do:
       forall(
         name <- :proper_types.string(),
-        do: String.length(Player.new(to_string(name)).name) > 0
+        do:
+          (Player.new(to_string(name)).name !== "")
+          |> collect(String.trim(to_string(name)) == "")
       )
+  )
 
   property "add a readings",
     do:
