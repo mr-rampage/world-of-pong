@@ -1,3 +1,0 @@
-<div class="phx-hero">
-  <h2><%= @reply %>!</h2>
-</div>

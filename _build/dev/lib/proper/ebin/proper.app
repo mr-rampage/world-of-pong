@@ -1,0 +1,13 @@
+{application,proper,
+             [{applications,[kernel,stdlib,elixir]},
+              {description,"QuickCheck-inspired property-based testing tool for Erlang.\n"},
+              {modules,[proper,proper_arith,proper_array,proper_dict,
+                        proper_fsm,proper_gb_sets,proper_gb_trees,proper_gen,
+                        proper_gen_next,proper_orddict,proper_ordsets,
+                        proper_prop_remover,proper_queue,proper_sa,
+                        proper_sets,proper_shrink,proper_statem,proper_symb,
+                        proper_target,proper_transformer,proper_types,
+                        proper_typeserver,proper_unicode,
+                        proper_unused_imports_remover,vararg]},
+              {registered,[]},
+              {vsn,"1.3.0"}]}.
