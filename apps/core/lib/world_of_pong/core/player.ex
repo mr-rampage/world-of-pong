@@ -4,22 +4,7 @@ defmodule WorldOfPong.Core.Player do
   @type t :: %Player{name: String.t(), readings: list(pos_integer)}
   defstruct name: "Player", readings: []
 
-  @doc """
-  Returns a player with a given name
-
-  ## Example
-
-    iex> new("Fred")
-    %Player{name: "Fred", readings: []}
-    iex> new("   ")
-    %Player{name: "Player", readings: []}
-
-  """
-  def new(name) do
-    normalized = String.trim(name)
-    if String.length(normalized) > 0, do: %Player{name: normalized}, else: %Player{}
-  end
-
+  @doc "Creates a player"
   @callback new(String.t()) :: %Player{}
 
   @doc "Adds a reading to a Player"
@@ -30,4 +15,25 @@ defmodule WorldOfPong.Core.Player do
 
   @doc "Calculates the average reading for a Player"
   @callback average_reading(%Player{}) :: {:ok, float} | {:error}
+
+  defmacro __using__(_) do
+    quote do
+      @impl WorldOfPong.Core.Player
+      @doc """
+      ## Example
+
+        iex> new("Fred")
+        %Player{name: "Fred", readings: []}
+        iex> new("   ")
+        %Player{name: "Player", readings: []}
+
+      """
+      def new(name) do
+        normalized = String.trim(name)
+        if String.length(normalized) > 0, do: %Player{name: normalized}, else: %Player{}
+      end
+
+      defoverridable new: 1
+    end
+  end
 end

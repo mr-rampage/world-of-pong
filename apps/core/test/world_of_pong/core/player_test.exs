@@ -1,8 +1,7 @@
 defmodule WorldOfPong.Core.PlayerTest do
   use ExUnit.Case
   use PropCheck
-
-  alias WorldOfPong.Core.Player
+  use WorldOfPong.Core.Player
 
   @moduletag :capture_log
 
@@ -13,7 +12,7 @@ defmodule WorldOfPong.Core.PlayerTest do
       forall(
         name <- :proper_types.string(),
         do:
-          (Player.new(to_string(name)).name !== "")
+          (new(to_string(name)).name !== "")
           |> collect(String.trim(to_string(name)) == "")
       )
   )

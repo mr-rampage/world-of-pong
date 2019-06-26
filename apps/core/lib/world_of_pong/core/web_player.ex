@@ -1,9 +1,7 @@
 defmodule WorldOfPong.Core.WebPlayer do
   @behaviour WorldOfPong.Core.Player
   alias WorldOfPong.Core.Player
-
-  @impl true
-  def new(player_name), do: Player.new(player_name)
+  use WorldOfPong.Core.Player
 
   @doc """
   Returns a Player with the reading prepended
