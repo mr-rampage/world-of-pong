@@ -1,29 +1,9 @@
 defmodule WorldOfPong.Core.WebPlayer do
   @behaviour WorldOfPong.Core.Player
-
-  alias __MODULE__
-
-  @moduledoc """
-  Player actor for the Web
-  """
   alias WorldOfPong.Core.Player
 
-  @doc """
-  Returns a player with a given name
-
-  ## Example
-
-    iex> new("Fred")
-    %Player{name: "Fred", readings: []}
-    iex> new("   ")
-    %Player{name: "Player", readings: []}
-
-  """
   @impl true
-  def new(name) do
-    normalized = String.trim(name)
-    if String.length(normalized) > 0, do: %Player{name: normalized}, else: %Player{}
-  end
+  def new(player_name), do: Player.new(player_name)
 
   @doc """
   Returns a Player with the reading prepended

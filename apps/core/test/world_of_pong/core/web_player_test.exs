@@ -11,16 +11,6 @@ defmodule WorldOfPong.Core.WebPlayerTest do
 
   @tim %Player{name: "Tim", readings: [5]}
 
-  property("always name a Player", [:verbose],
-    do:
-      forall(
-        name <- :proper_types.string(),
-        do:
-          (new(to_string(name)).name !== "")
-          |> collect(String.trim(to_string(name)) == "")
-      )
-  )
-
   property "add a reading",
     do:
       forall(

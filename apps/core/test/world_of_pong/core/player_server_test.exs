@@ -1,7 +1,6 @@
 defmodule WorldOfPong.Core.PlayerServerTest do
   use ExUnit.Case
 
-  alias WorldOfPong.Core.Player
   alias WorldOfPong.Core.PlayerServer
 
   @moduletag :capture_log
