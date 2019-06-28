@@ -1,13 +1,13 @@
-defmodule WorldOfPong.Core.WebPlayerTest do
+defmodule PlayerService.Player.WebTest do
   use ExUnit.Case
   use PropCheck
 
-  alias WorldOfPong.Core.Player
-  import WorldOfPong.Core.WebPlayer
+  alias PlayerService.Player
+  import PlayerService.Player.Web
 
   @moduletag :capture_log
 
-  doctest WorldOfPong.Core.WebPlayer, import: true
+  doctest PlayerService.Player.Web, import: true
 
   @tim %Player{name: "Tim", readings: [5]}
 

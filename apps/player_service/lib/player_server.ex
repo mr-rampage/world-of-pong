@@ -1,9 +1,9 @@
-defmodule WorldOfPong.Core.PlayerServer do
+defmodule PlayerService.Server do
   @moduledoc false
 
   use GenServer
 
-  import WorldOfPong.Core.WebPlayer
+  import PlayerService.Player.Web
 
   def start_link(player_name), do: GenServer.start_link(__MODULE__, player_name)
 

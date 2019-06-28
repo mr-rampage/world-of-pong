@@ -1,11 +1,11 @@
-defmodule WorldOfPong.Core.PlayerTest do
+defmodule PlayerService.PlayerTest do
   use ExUnit.Case
   use PropCheck
-  use WorldOfPong.Core.Player
+  use PlayerService.Player
 
   @moduletag :capture_log
 
-  doctest WorldOfPong.Core.Player, import: true
+  doctest PlayerService.Player, import: true
 
   property("always name a Player", [:verbose],
     do:

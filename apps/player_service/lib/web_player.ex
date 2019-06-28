@@ -1,7 +1,7 @@
-defmodule WorldOfPong.Core.WebPlayer do
-  @behaviour WorldOfPong.Core.Player
-  alias WorldOfPong.Core.Player
-  use WorldOfPong.Core.Player
+defmodule PlayerService.Player.Web do
+  @behaviour PlayerService.Player
+  alias PlayerService.Player
+  use PlayerService.Player
 
   @doc """
   Returns a Player with the reading prepended

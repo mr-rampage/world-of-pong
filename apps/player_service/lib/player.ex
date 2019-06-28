@@ -1,4 +1,4 @@
-defmodule WorldOfPong.Core.Player do
+defmodule PlayerService.Player do
   alias __MODULE__
 
   @type t :: %Player{name: String.t(), readings: list(pos_integer)}
@@ -18,7 +18,6 @@ defmodule WorldOfPong.Core.Player do
 
   defmacro __using__(_) do
     quote do
-      @impl WorldOfPong.Core.Player
       @doc """
       ## Example
 
@@ -28,6 +27,7 @@ defmodule WorldOfPong.Core.Player do
         %Player{name: "Player", readings: []}
 
       """
+      @impl PlayerService.Player
       def new(name) do
         normalized = String.trim(name)
         if String.length(normalized) > 0, do: %Player{name: normalized}, else: %Player{}
