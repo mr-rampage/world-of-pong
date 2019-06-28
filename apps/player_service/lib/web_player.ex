@@ -45,9 +45,8 @@ defmodule PlayerService.Player.Web do
   """
   @impl true
   def average_reading(%Player{readings: [_ | _] = readings}),
-      do: {:ok, Enum.sum(readings) / length(readings)}
+    do: {:ok, Enum.sum(readings) / length(readings)}
 
   @impl true
   def average_reading(_player), do: {:error}
-
 end

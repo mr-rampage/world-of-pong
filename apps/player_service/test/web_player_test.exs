@@ -17,7 +17,7 @@ defmodule PlayerService.Player.WebTest do
         reading <- pos_integer(),
         do:
           add_reading(@tim, reading).readings
-          |> List.first
+          |> List.first()
           |> equals(reading)
       )
 
