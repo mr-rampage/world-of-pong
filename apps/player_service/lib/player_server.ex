@@ -5,7 +5,7 @@ defmodule PlayerService.Server do
 
   import PlayerService.Player.Web
 
-  def start_link(player_name, team), do: GenServer.start_link(__MODULE__, {player_name, team})
+  def start_link({player_name, team}), do: GenServer.start_link(__MODULE__, {player_name, team})
 
   @spec move(pid, pos_integer) :: :ok
   def move(pid, reading), do: GenServer.cast(pid, {:add_reading, reading})
