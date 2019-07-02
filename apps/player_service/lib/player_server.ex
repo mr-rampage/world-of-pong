@@ -3,8 +3,10 @@ defmodule PlayerService.Server do
 
   use GenServer
 
+  alias PlayerService.Player
   import PlayerService.Player.Web
 
+  @spec start_link({String.t(), Player.team}) :: GenServer.on_start
   def start_link({player_name, team}), do: GenServer.start_link(__MODULE__, {player_name, team})
 
   @spec move(pid, pos_integer) :: :ok
@@ -20,5 +22,5 @@ defmodule PlayerService.Server do
   def handle_cast({:add_reading, reading}, player), do: {:noreply, add_reading(player, reading)}
 
   @impl true
-  def handle_call({:get_location}, _pid, player), do: {:reply, average_reading(player)}
+  def handle_call({:get_location}, _pid, player), do: {:reply, average_reading(player), player}
 end
