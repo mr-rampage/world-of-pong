@@ -12,7 +12,7 @@ defmodule PlayerService.PlayerTest do
       forall(
         name <- :proper_types.string(),
         do:
-          (new(to_string(name), :left).name !== "")
+          (new(to_string(name)).name !== "")
           |> collect(String.trim(to_string(name)) == "")
       )
   )

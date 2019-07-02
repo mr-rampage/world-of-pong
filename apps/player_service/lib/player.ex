@@ -1,13 +1,11 @@
 defmodule PlayerService.Player do
   alias __MODULE__
 
-  @type team :: :left|:right
-
-  @type player :: %Player{name: String.t(), team: team, readings: list(pos_integer)}
-  defstruct name: "Player", team: nil, readings: []
+  @type player :: %Player{name: String.t(), readings: list(pos_integer)}
+  defstruct name: "Player", readings: []
 
   @doc "Creates a player"
-  @callback new(String.t(), team) :: player
+  @callback new(String.t()) :: player
 
   @doc "Adds a reading to a Player"
   @callback add_reading(player, pos_integer) :: player
@@ -23,18 +21,18 @@ defmodule PlayerService.Player do
       @doc """
       ## Example
 
-        iex> new("Fred", :left)
-        %Player{name: "Fred", team: :left, readings: []}
-        iex> new("   ", :right)
-        %Player{name: "Player", team: :right, readings: []}
+        iex> new("Fred")
+        %Player{name: "Fred", readings: []}
+        iex> new("   ")
+        %Player{name: "Player", readings: []}
 
       """
-      def new(name, team) do
+      def new(name) do
         normalized = String.trim(name)
 
         if String.length(normalized) > 0,
-          do: %Player{name: normalized, team: team},
-          else: %Player{team: team}
+          do: %Player{name: normalized},
+          else: %Player{}
       end
     end
   end
