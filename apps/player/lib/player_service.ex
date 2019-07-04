@@ -1,7 +1,5 @@
-defmodule Player.Web do
-  @behaviour Player
-  alias Player
-  use Player
+defmodule Player.Service do
+  alias __MODULE__
 
   @doc """
   Returns a Player with the reading prepended
@@ -12,7 +10,7 @@ defmodule Player.Web do
     %Player{name: "Fred", readings: [5]}
 
   """
-  @impl true
+  @spec add_reading(Player.player, pos_integer) :: Player.player
   def add_reading(%Player{readings: old_readings} = player, reading) when reading >= 0 do
     new_readings = [reading | old_readings]
     %Player{player | readings: new_readings}
@@ -28,7 +26,7 @@ defmodule Player.Web do
     %Player{name: "Charlie", readings: []}
 
   """
-  @impl true
+  @spec clear_readings(Player.player) :: Player.player
   def clear_readings(%Player{} = player), do: %Player{player | readings: []}
 
   @doc """
@@ -43,10 +41,10 @@ defmodule Player.Web do
     {:error}
 
   """
-  @impl true
+  @spec average_reading(Player.player) :: {:ok, float}
   def average_reading(%Player{readings: [_ | _] = readings}),
     do: {:ok, Enum.sum(readings) / length(readings)}
 
-  @impl true
+  @spec average_reading(Player.player) :: {:error}
   def average_reading(_player), do: {:error}
 end

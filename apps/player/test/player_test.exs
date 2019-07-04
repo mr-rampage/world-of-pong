@@ -1,8 +1,6 @@
 defmodule PlayerService.PlayerTest do
   use ExUnit.Case
   use PropCheck
-  use Player
-
   @moduletag :capture_log
 
   doctest Player, import: true
@@ -12,7 +10,7 @@ defmodule PlayerService.PlayerTest do
       forall(
         name <- :proper_types.string(),
         do:
-          (new(to_string(name)).name !== "")
+          (Player.new(to_string(name)).name !== "")
           |> collect(String.trim(to_string(name)) == "")
       )
   )

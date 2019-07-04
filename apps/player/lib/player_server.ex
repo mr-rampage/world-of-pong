@@ -3,7 +3,7 @@ defmodule Player.Server do
 
   use GenServer
 
-  import Player.Web
+  import Player.Service
 
   @spec start_link(String.t()) :: GenServer.on_start()
   def start_link(player_name), do: GenServer.start_link(__MODULE__, player_name)
@@ -15,7 +15,7 @@ defmodule Player.Server do
   def get_location(pid), do: GenServer.call(pid, {:get_location})
 
   @impl true
-  def init(player_name), do: {:ok, new(player_name)}
+  def init(player_name), do: {:ok, Player.new(player_name)}
 
   @impl true
   def handle_cast({:add_reading, reading}, player), do: {:noreply, add_reading(player, reading)}

@@ -2,12 +2,11 @@ defmodule PlayerService.Player.WebTest do
   use ExUnit.Case
   use PropCheck
 
-  alias Player
-  import Player.Web
+  import Player.Service
 
   @moduletag :capture_log
 
-  doctest Player.Web, import: true
+  doctest Player.Service, import: true
 
   @tim %Player{name: "Tim", readings: [5]}
 
