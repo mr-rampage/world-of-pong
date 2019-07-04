@@ -41,10 +41,9 @@ defmodule Player.Service do
     {:error}
 
   """
-  @spec average_reading(Player.player) :: {:ok, float}
+  @spec average_reading(Player.player) :: {:ok, float} | {:error}
   def average_reading(%Player{readings: [_ | _] = readings}),
     do: {:ok, Enum.sum(readings) / length(readings)}
 
-  @spec average_reading(Player.player) :: {:error}
   def average_reading(_player), do: {:error}
 end
