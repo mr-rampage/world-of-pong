@@ -1,9 +1,9 @@
-defmodule PlayerService.Server do
+defmodule Player.Server do
   @moduledoc false
 
   use GenServer
 
-  import PlayerService.Player.Web
+  import Player.Web
 
   @spec start_link(String.t()) :: GenServer.on_start()
   def start_link(player_name), do: GenServer.start_link(__MODULE__, player_name)

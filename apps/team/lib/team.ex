@@ -1,4 +1,4 @@
-defmodule TeamService.Team do
+defmodule Team do
   @moduledoc """
   Team
   """

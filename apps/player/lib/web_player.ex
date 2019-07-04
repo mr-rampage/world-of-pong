@@ -1,7 +1,7 @@
-defmodule PlayerService.Player.Web do
-  @behaviour PlayerService.Player
-  alias PlayerService.Player
-  use PlayerService.Player
+defmodule Player.Web do
+  @behaviour Player
+  alias Player
+  use Player
 
   @doc """
   Returns a Player with the reading prepended

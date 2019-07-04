@@ -1,11 +1,11 @@
 defmodule PlayerService.ServerTest do
   use ExUnit.Case
 
-  alias PlayerService.Server
+  alias Player.Server
 
   @moduletag :capture_log
 
-  doctest PlayerService.Server, import: true
+  doctest Player.Server, import: true
 
   test "module exists" do
     assert is_list(Server.module_info())

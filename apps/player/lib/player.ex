@@ -1,4 +1,4 @@
-defmodule PlayerService.Player do
+defmodule Player do
   alias __MODULE__
 
   @type player :: %Player{name: String.t(), readings: list(pos_integer)}

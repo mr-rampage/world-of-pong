@@ -1,11 +1,11 @@
 defmodule PlayerService.PlayerTest do
   use ExUnit.Case
   use PropCheck
-  use PlayerService.Player
+  use Player
 
   @moduletag :capture_log
 
-  doctest PlayerService.Player, import: true
+  doctest Player, import: true
 
   property("always name a Player", [:verbose],
     do:
